@@ -87,7 +87,42 @@ Agent.destroy_all
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
-# TODO!
+studio = Studio.new
+studio["studio_name"] = "Warner Bros."
+studio.save
+
+puts "Studios: #{Studio.all.count}"
+
+warner_bros = Studio.find_by({"studio_name" => "Warner Bros."})
+
+movie = Movie.new
+movie["movie_name"] = "Batman Begins"
+movie["release_year"] = 2005
+movie["MPAA_rating"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+movie = Movie.new
+movie["movie_name"] = "The Dark Knight"
+movie["release_year"] = 2008
+movie["MPAA_rating"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+movie = Movie.new
+movie["movie_name"] = "The Dark Knight Rises"
+movie["release_year"] = 2012
+movie["MPAA_rating"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+puts "Movies: #{Movie.all.count}"
+
+batman_begins = Movie.find_by({"movie_name" => "Batman Begins"})
+dark_knight = Movie.find_by({"movie_name" => "The Dark Knight"})
+dark_knight_rises = Movie.find_by({"movie_name" => "The Dark Knight Rises"})
+
+batman_begins = Movie.find_by({"movie_name" => "Batman Begins"})
 
 # Prints a header for the movies output
 puts "Movies"
