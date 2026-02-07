@@ -122,7 +122,25 @@ batman_begins = Movie.find_by({"movie_name" => "Batman Begins"})
 dark_knight = Movie.find_by({"movie_name" => "The Dark Knight"})
 dark_knight_rises = Movie.find_by({"movie_name" => "The Dark Knight Rises"})
 
-batman_begins = Movie.find_by({"movie_name" => "Batman Begins"})
+agent = Agent.new
+agent["agent_name"] = "Daniel Cutright"
+agent.save
+
+puts "Agents: #{Agent.all.count}"
+
+daniel_cutright = Agent.find_by({"agent_name" => "Daniel Cutright"})
+
+actor = Actor.new
+actor["actor_name"] = "Christian Bale"
+actor["agent_id"] = daniel_cutright["id"]
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Michael Cane"
+actor.save
+p actor
+
+puts "Actors: #{Actor.all.count}"
 
 # Prints a header for the movies output
 puts "Movies"
