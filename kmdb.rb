@@ -91,8 +91,6 @@ studio = Studio.new
 studio["studio_name"] = "Warner Bros."
 studio.save
 
-puts "Studios: #{Studio.all.count}"
-
 warner_bros = Studio.find_by({"studio_name" => "Warner Bros."})
 
 movie = Movie.new
@@ -116,8 +114,6 @@ movie["MPAA_rating"] = "PG-13"
 movie["studio_id"] = warner_bros["id"]
 movie.save
 
-puts "Movies: #{Movie.all.count}"
-
 batman_begins = Movie.find_by({"movie_name" => "Batman Begins"})
 dark_knight = Movie.find_by({"movie_name" => "The Dark Knight"})
 dark_knight_rises = Movie.find_by({"movie_name" => "The Dark Knight Rises"})
@@ -125,8 +121,6 @@ dark_knight_rises = Movie.find_by({"movie_name" => "The Dark Knight Rises"})
 agent = Agent.new
 agent["agent_name"] = "Daniel Cutright"
 agent.save
-
-puts "Agents: #{Agent.all.count}"
 
 daniel_cutright = Agent.find_by({"agent_name" => "Daniel Cutright"})
 
@@ -174,8 +168,6 @@ actor.save
 actor = Actor.new
 actor["actor_name"] = "Anne Hathaway"
 actor.save
-
-puts "Actors: #{Actor.all.count}"
 
 christian_bale = Actor.find_by({"actor_name" => "Christian Bale"})
 michael_cane = Actor.find_by({"actor_name" => "Michael Cane"})
@@ -294,15 +286,24 @@ role["actor_id"] = anne_hathaway["id"]
 role["movie_id"] = dark_knight_rises["id"]
 role.save
 
-puts "Roles: #{Role.all.count}"
-
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output.
-# TODO!
+movies = Movie.all
+studios = Studio.all
+
+for movie in movies
+  movie_name = movie["movie_name"]
+  release_year = movie["release_year"]
+  mpaa_rating = movie["MPAA_rating"]
+  for studio in studios
+    studio_name = studio["studio_name"]
+  end
+  puts "#{movie_name} #{release_year} #{mpaa_rating} #{studio_name}"
+end
 
 # Prints a header for the cast output
 puts ""
