@@ -138,9 +138,56 @@ actor.save
 actor = Actor.new
 actor["actor_name"] = "Michael Cane"
 actor.save
-p actor
+
+actor = Actor.new
+actor["actor_name"] = "Liam Neeson"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Katie Holmes"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Gary Oldman"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Heath Ledger"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Aaron Eckhart"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Maggie Gyllenhaal"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Tom Hardy"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Joseph Gordon-Levitt"
+actor.save
+
+actor = Actor.new
+actor["actor_name"] = "Anne Hathaway"
+actor.save
 
 puts "Actors: #{Actor.all.count}"
+
+christian_bale = Actor.find_by({"actor_name" => "Christian Bale"})
+michael_cane = Actor.find_by({"actor_name" => "Michael Cane"})
+liam_neeson = Actor.find_by({"actor_name" => "Liam Neeson"})
+katie_holmes = Actor.find_by({"actor_name" => "Katie Holmes"})
+gary_oldman = Actor.find_by({"actor_name" => "Gary Oldman"})
+heath_ledger = Actor.find_by({"actor_name" => "Heath Ledger"})
+aaron_eckhart = Actor.find_by({"actor_name" => "Aaron Eckhart"})
+maggie_gyllenhaal = Actor.find_by({"actor_name" => "Maggie Gyllenhaal"})
+tom_hardy = Actor.find_by({"actor_name" => "Tom Hardy"})
+joseph_gordon_levitt = Actor.find_by({"actor_name" => "Joseph Gordon-Levitt"})
+anne_hathaway = Actor.find_by({"actor_name" => "Anne Hathaway"})
 
 # Prints a header for the movies output
 puts "Movies"
