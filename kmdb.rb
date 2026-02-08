@@ -189,31 +189,10 @@ role["movie_id"] = batman_begins["id"]
 role.save
 
 role = Role.new
-role["role_name"] = "Bruce Wayne"
-role["billing_order"] = 1
-role["actor_id"] = christian_bale["id"]
-role["movie_id"] = dark_knight["id"]
-role.save
-
-role = Role.new
-role["role_name"] = "Bruce Wayne"
-role["billing_order"] = 1
-role["actor_id"] = christian_bale["id"]
-role["movie_id"] = dark_knight_rises["id"]
-role.save
-
-role = Role.new
 role["role_name"] = "Alfred"
 role["billing_order"] = 2
 role["actor_id"] = michael_cane["id"]
 role["movie_id"] = batman_begins["id"]
-role.save
-
-role = Role.new
-role["role_name"] = "Alfred"
-role["billing_order"] = 4
-role["actor_id"] = michael_cane["id"]
-role["movie_id"] = dark_knight["id"]
 role.save
 
 role = Role.new
@@ -238,10 +217,10 @@ role["movie_id"] = batman_begins["id"]
 role.save
 
 role = Role.new
-role["role_name"] = "Commissioner Gordon"
-role["billing_order"] = 2
-role["actor_id"] = gary_oldman["id"]
-role["movie_id"] = dark_knight_rises["id"]
+role["role_name"] = "Bruce Wayne"
+role["billing_order"] = 1
+role["actor_id"] = christian_bale["id"]
+role["movie_id"] = dark_knight["id"]
 role.save
 
 role = Role.new
@@ -259,10 +238,31 @@ role["movie_id"] = dark_knight["id"]
 role.save
 
 role = Role.new
+role["role_name"] = "Alfred"
+role["billing_order"] = 4
+role["actor_id"] = michael_cane["id"]
+role["movie_id"] = dark_knight["id"]
+role.save
+
+role = Role.new
 role["role_name"] = "Rachel Dawes"
 role["billing_order"] = 5
 role["actor_id"] = maggie_gyllenhaal["id"]
 role["movie_id"] = dark_knight["id"]
+role.save
+
+role = Role.new
+role["role_name"] = "Bruce Wayne"
+role["billing_order"] = 1
+role["actor_id"] = christian_bale["id"]
+role["movie_id"] = dark_knight_rises["id"]
+role.save
+
+role = Role.new
+role["role_name"] = "Commissioner Gordon"
+role["billing_order"] = 2
+role["actor_id"] = gary_oldman["id"]
+role["movie_id"] = dark_knight_rises["id"]
 role.save
 
 role = Role.new
@@ -286,6 +286,13 @@ role["actor_id"] = anne_hathaway["id"]
 role["movie_id"] = dark_knight_rises["id"]
 role.save
 
+puts "Studios: #{Studio.all.count}"
+puts "Movies: #{Movie.all.count}"
+puts "Actors: #{Actor.all.count}"
+puts "Roles: #{Role.all.count}"
+puts "Agents: #{Agent.all.count}"
+puts ""
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
@@ -299,10 +306,15 @@ for movie in movies
   movie_name = movie["movie_name"]
   release_year = movie["release_year"]
   mpaa_rating = movie["MPAA_rating"]
-  for studio in studios
-    studio_name = studio["studio_name"]
-  end
-  puts "#{movie_name} #{release_year} #{mpaa_rating} #{studio_name}"
+  studio_id = movie["studio_id"]
+
+    for studio in studios
+      if studio["id"] == studio_id
+        studio_name = studio["studio_name"]
+      end
+    end
+
+  puts movie_name.ljust(25) + release_year.to_s.ljust(10) + mpaa_rating.ljust(10) + studio_name.ljust(10)
 end
 
 # Prints a header for the cast output
@@ -312,7 +324,28 @@ puts "========"
 puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+actors = Actor.all
+roles = Role.all
+
+for role in roles
+  movie_id = role["movie_id"]
+  actor_id = role["actor_id"]
+  role_name = role["role_name"]
+
+    for movie in movies
+      if movie["id"] == movie_id
+        movie_name = movie["movie_name"]
+      end
+    end
+
+    for actor in actors
+      if actor["id"] == actor_id
+        actor_name = actor["actor_name"]
+      end
+    end
+
+  puts movie_name.ljust(25) + actor_name.ljust(25) + role_name.ljust(25)
+end
 
 # Prints a header for the agent's list of represented actors output
 puts ""
@@ -321,4 +354,10 @@ puts "===================="
 puts ""
 
 # Query the actor data and loop through the results to display the agent's list of represented actors output.
-# TODO!
+for actor in actors
+  actor_name = actor["actor_name"]
+  agent_id = actor["agent_id"]
+    if agent_id == daniel_cutright["id"]
+      puts actor_name.ljust(25)
+    end
+end
