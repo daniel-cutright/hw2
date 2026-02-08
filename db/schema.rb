@@ -35,7 +35,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_07_185305) do
 
   create_table "roles", force: :cascade do |t|
     t.integer "actor_id"
-    t.integer "billing_order"
     t.datetime "created_at", null: false
     t.integer "movie_id"
     t.string "role_name"
