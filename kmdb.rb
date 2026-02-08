@@ -47,7 +47,7 @@ actor["agent_id"] = daniel_cutright["id"]
 actor.save
 
 actor = Actor.new
-actor["actor_name"] = "Michael Cane"
+actor["actor_name"] = "Michael Caine"
 actor.save
 
 actor = Actor.new
@@ -87,7 +87,7 @@ actor["actor_name"] = "Anne Hathaway"
 actor.save
 
 christian_bale = Actor.find_by({"actor_name" => "Christian Bale"})
-michael_cane = Actor.find_by({"actor_name" => "Michael Cane"})
+michael_caine = Actor.find_by({"actor_name" => "Michael Caine"})
 liam_neeson = Actor.find_by({"actor_name" => "Liam Neeson"})
 katie_holmes = Actor.find_by({"actor_name" => "Katie Holmes"})
 gary_oldman = Actor.find_by({"actor_name" => "Gary Oldman"})
@@ -106,7 +106,7 @@ role.save
 
 role = Role.new
 role["role_name"] = "Alfred"
-role["actor_id"] = michael_cane["id"]
+role["actor_id"] = michael_caine["id"]
 role["movie_id"] = batman_begins["id"]
 role.save
 
@@ -148,7 +148,7 @@ role.save
 
 role = Role.new
 role["role_name"] = "Alfred"
-role["actor_id"] = michael_cane["id"]
+role["actor_id"] = michael_caine["id"]
 role["movie_id"] = dark_knight["id"]
 role.save
 
