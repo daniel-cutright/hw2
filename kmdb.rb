@@ -13,21 +13,21 @@ warner_bros = Studio.find_by({"studio_name" => "Warner Bros."})
 movie = Movie.new
 movie["movie_name"] = "Batman Begins"
 movie["release_year"] = 2005
-movie["MPAA_rating"] = "PG-13"
+movie["mpaa_rating"] = "PG-13"
 movie["studio_id"] = warner_bros["id"]
 movie.save
 
 movie = Movie.new
 movie["movie_name"] = "The Dark Knight"
 movie["release_year"] = 2008
-movie["MPAA_rating"] = "PG-13"
+movie["mpaa_rating"] = "PG-13"
 movie["studio_id"] = warner_bros["id"]
 movie.save
 
 movie = Movie.new
 movie["movie_name"] = "The Dark Knight Rises"
 movie["release_year"] = 2012
-movie["MPAA_rating"] = "PG-13"
+movie["mpaa_rating"] = "PG-13"
 movie["studio_id"] = warner_bros["id"]
 movie.save
 
@@ -198,7 +198,7 @@ studios = Studio.all
 for movie in movies
   movie_name = movie["movie_name"]
   release_year = movie["release_year"]
-  mpaa_rating = movie["MPAA_rating"]
+  mpaa_rating = movie["mpaa_rating"]
   studio_id = movie["studio_id"]
 
     for studio in studios
