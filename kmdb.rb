@@ -193,21 +193,10 @@ puts "======"
 puts ""
 
 movies = Movie.all
-studios = Studio.all
 
 for movie in movies
-  movie_name = movie["movie_name"]
-  release_year = movie["release_year"]
-  mpaa_rating = movie["mpaa_rating"]
-  studio_id = movie["studio_id"]
-
-    for studio in studios
-      if studio["id"] == studio_id
-        studio_name = studio["studio_name"]
-      end
-    end
-
-  puts movie_name.ljust(25) + release_year.to_s.ljust(10) + mpaa_rating.ljust(10) + studio_name.ljust(10)
+  studio = Studio.find(movie["studio_id"])
+  puts movie["movie_name"].ljust(25) + movie["release_year"].to_s.ljust(10) + movie["mpaa_rating"].ljust(10) + studio["studio_name"].ljust(10)
 end
 
 puts ""
@@ -215,27 +204,12 @@ puts "Top Cast"
 puts "========"
 puts ""
 
-actors = Actor.all
 roles = Role.all
 
 for role in roles
-  movie_id = role["movie_id"]
-  actor_id = role["actor_id"]
-  role_name = role["role_name"]
-
-    for movie in movies
-      if movie["id"] == movie_id
-        movie_name = movie["movie_name"]
-      end
-    end
-
-    for actor in actors
-      if actor["id"] == actor_id
-        actor_name = actor["actor_name"]
-      end
-    end
-
-  puts movie_name.ljust(25) + actor_name.ljust(25) + role_name.ljust(25)
+  movie = Movie.find(role["movie_id"])
+  actor = Actor.find(role["actor_id"])
+  puts movie["movie_name"].ljust(25) + actor["actor_name"].ljust(25) + role["role_name"].ljust(25)
 end
 
 puts ""
@@ -243,10 +217,11 @@ puts "Represented by agent"
 puts "===================="
 puts ""
 
+actors = Actor.all
+
 for actor in actors
-  actor_name = actor["actor_name"]
   agent_id = actor["agent_id"]
     if agent_id == daniel_cutright["id"]
-      puts actor_name.ljust(25)
+      puts actor["actor_name"].ljust(25)
     end
 end
